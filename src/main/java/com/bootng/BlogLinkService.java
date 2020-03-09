@@ -10,12 +10,12 @@ import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BlogService {
+public class BlogLinkService {
 
-  public List<String> getAllLinks( String url) {
-    
-    List<String> result =  new ArrayList<String>();
-  
+  public List<String> getAllLinks(String url) {
+
+    List<String> result = new ArrayList<String>();
+
     Document doc;
     try {
       doc = Jsoup.connect(url).get();
@@ -23,12 +23,12 @@ public class BlogService {
       for (Element link : links) {
         result.add(String.format(" %s : %s", link.attr("abs:href"), link.text()));
       }
-    
+
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-       
+
     return result;
   }
 }
